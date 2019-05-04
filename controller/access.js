@@ -4,14 +4,19 @@
 */
 const path = require('path')
 module.exports = async (swc, options)=>{
-	swc = await swc.registerMysqlDao(swc);
+	swc = await swc.registerMysqlDao(swc, {
+		servicePath : `${path.resolve()}/services/mysql/defineModel`
+	});
 	swc = await swc.registerStatic(swc, {
 		items : [{
 			path : '/' + swc.config.server.bussiness_name + '/res',
-			staticFilePath : `static/res`
+			staticFilePath : `./keke_stage/static/res`
 		} , {
 			path : '/' + swc.config.server.bussiness_name + '/admin',
-			staticFilePath : `static/admin`
+			staticFilePath : `./keke_stage/static/admin`
+		}, {
+			path : `/${swc.config.server.bussiness_name}/public`,
+			staticFilePath : `${path.resolve()}/public`
 		}]
 	});
 	swc = await swc.registerHttpService(swc, {
