@@ -31,5 +31,10 @@ module.exports = async (swc, options)=>{
 		httpServiceFilePath : `${path.resolve()}/services/http`
 	})
 
+	swc = await swc.registerModel(swc, {
+		modelName : "user",
+		path : `${path.resolve()}/models/objects/user`
+	})
+
 	return swc;
 }
