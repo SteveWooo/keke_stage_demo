@@ -1,5 +1,5 @@
 /*
-* @param demo_id, status
+* @param demo_id, code
 */
 const crypto = require("crypto");
 module.exports = {
@@ -8,7 +8,7 @@ module.exports = {
 		method : 'post',
 		middlewares : [],
 		model : {
-			status : 2000,
+			code : 2000,
 			error_message : '',
 			data : {}
 		}
@@ -18,14 +18,14 @@ module.exports = {
 		var swc = req.swc;
 
 		if(!query.demo_id || query.demo_id.length != 32){
-			req.response.status = 4005;
+			req.response.code = 4005;
 			req.response.error_message = "参数错误";
 			next();
 			return ;
 		}
 
-		if(!query.status || parseInt(query.status) != query.status){
-			req.response.status = 4005;
+		if(!query.code || parseInt(query.code) != query.code){
+			req.response.code = 4005;
 			req.response.error_message = "参数错误";
 			next();
 			return ;
@@ -46,7 +46,7 @@ module.exports = {
 			req.response.data = result;
 			next();
 		}catch(e){
-			req.response.status = 5000;
+			req.response.code = 5000;
 			req.response.error_message = e.message;
 			next();
 			return ;

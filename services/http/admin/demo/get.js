@@ -8,7 +8,7 @@ module.exports = {
 		method : 'get',
 		middlewares : [],
 		model : {
-			status : 2000,
+			code : 2000,
 			error_message : '',
 			data : {}
 		}
@@ -25,7 +25,7 @@ module.exports = {
 			})
 
 			if(result.count == 0){
-				req.response.status = 4004;
+				req.response.code = 4004;
 				req.response.error_message = "找不到该通知";
 				next();
 				return ;
@@ -45,7 +45,7 @@ module.exports = {
 		}
 
 		if(parseInt(query.page) != query.page || parseInt(query.item_per_page) != query.item_per_page){
-			req.response.status = 4005;
+			req.response.code = 4005;
 			req.response.error_message = "参数错误:page or item_per_page";
 			next();
 			return ;
@@ -53,12 +53,12 @@ module.exports = {
 		query.item_per_page = parseInt(query.item_per_page);
 		var condition = {};
 
-		if(query.status && (query.status == 1 || query.status ==2 || query.status == 3)){
-			condition.status = query.status;
+		if(query.code && (query.code == 1 || query.code ==2 || query.code == 3)){
+			condition.code = query.code;
 		}
 
-		if(query.status == 13){
-			condition.status = {
+		if(query.code == 13){
+			condition.code = {
 				[swc.dao.seq.Op.or] : ['1', '3'], //待评价或已完成
 			};
 		}
@@ -79,7 +79,7 @@ module.exports = {
 
 			next();
 		}catch(e){
-			req.response.status = 5000;
+			req.response.code = 5000;
 			req.response.error_message = e.message;
 			next();
 			return ;

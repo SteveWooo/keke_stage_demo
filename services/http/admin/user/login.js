@@ -8,7 +8,7 @@ module.exports = {
 		method : 'post',
 		middlewares : [],
 		model : {
-			status : 2000,
+			code : 2000,
 			source : {},
 			error_message : ''
 		}

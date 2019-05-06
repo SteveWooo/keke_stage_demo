@@ -5,7 +5,8 @@ async function main(){
 		swc = await require('./controllers/access')(swc, {});
 		swc.startup(swc);
 	}catch(e){
-		console.log(e)
+		console.log(e);
+		process.exit();
 	}
 }
 
