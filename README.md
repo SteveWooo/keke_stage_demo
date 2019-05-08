@@ -72,7 +72,7 @@ swc = await swc.registerMysqlDao(swc, {
 			path : `/${swc.config.server.bussiness_name}/public`,
 			staticFilePath : `${path.resolve()}/public`
 		}]
-	});
+	});;
 ```
 
 3. 中间件注册
